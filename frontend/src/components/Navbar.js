@@ -37,7 +37,7 @@ const Navbar = () => {
         <div>
           <Link to="/information" className="mx-4">Information</Link>
           <Link to="/model-analysis" className="mx-4">Detection</Link>
-          <Link to="/dataset" className="mx-4">Dataset</Link>
+          {/* <Link to="/dataset" className="mx-4">Dataset</Link> */}
           <Link to="/about" className="mx-4">About</Link>
         </div>
       </div>
