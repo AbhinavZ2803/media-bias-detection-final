@@ -1,0 +1,4 @@
+node_modules/
+venv/
+*.h5
+__pycache__/

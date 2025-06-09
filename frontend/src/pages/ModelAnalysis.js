@@ -1,299 +1,180 @@
-// import React, { useState } from 'react';
-
-// const ModelAnalysis = () => {
-//   const [article, setArticle] = useState('');
-//   const [modelType, setModelType] = useState('ML');
-//   const [result, setResult] = useState(null);
-
-//   const handleAnalysis = () => {
-//     // API call to backend for analysis
-//     // Assuming backend is running and has an endpoint to handle this
-//     fetch('http://localhost:5000/api/analyze', {
-//       method: 'POST',
-//       body: JSON.stringify({ article, modelType }),
-//       headers: { 'Content-Type': 'application/json' },
-//     })
-//       .then(response => response.json())
-//       .then(data => setResult(data))
-//       .catch(err => console.error(err));
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-gray-100 p-6 text-center">
-//       <h2 className="text-3xl font-bold text-center mb-4">Model Analysis</h2>
-//       <div className="flex justify-center">
-//         <input
-//           type="text"
-//           className="p-2 rounded-md border border-gray-300 w-2/3 mb-4"
-//           placeholder="Enter article URL or text"
-//           value={article}
-//           onChange={e => setArticle(e.target.value)}
-//         />
-//       </div>
-//       <div className="flex justify-center mb-4">
-//         <select
-//           className="p-2 rounded-md border border-gray-300"
-//           value={modelType}
-//           onChange={e => setModelType(e.target.value)}
-//         >
-//           <option value="ML">Machine Learning</option>
-//           <option value="LLM">Large Language Model</option>
-//         </select>
-//       </div>
-//       <button onClick={handleAnalysis} className="bg-blue-600 text-white px-6 py-3 rounded-md text-lg">Analyze</button>
-
-//       {result && (
-//         <div className="mt-6 bg-white p-6 rounded-md shadow-lg">
-//           <h3 className="text-xl font-bold mb-4">Analysis Result</h3>
-//           <p><strong>Detected Bias:</strong> {result.bias}</p>
-//           <p><strong>Model Used:</strong> {result.model}</p>
-//           <p><strong>Accuracy:</strong> {result.accuracy}%</p>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ModelAnalysis;
-
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { Line } from 'react-chartjs-2';
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend
-// } from 'chart.js';
-
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend
-// );
-
-// const ModelAnalysis = () => {
-//   const [article, setArticle] = useState('');
-//   const [modelType, setModelType] = useState('ML');
-//   const [result, setResult] = useState(null);
-
-//   // Sample data for the chart (replace with real data from backend)
-//   const chartData = {
-//     labels: ['Deep Learning', 'Machine Learning', 'Lexicon-Based'],
-//     datasets: [
-//       {
-//         label: 'Accuracy (%)',
-//         data: [90, 80, 70], // Replace with real model accuracy
-//         borderColor: 'rgb(75, 192, 192)',
-//         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-//         tension: 0.1
-//       }
-//     ]
-//   };
-
-//   // Handle analysis button click
-//   const handleAnalysis = () => {
-//     // API call to backend for analysis (mocked here)
-//     // Replace with actual backend API for bias detection
-//     fetch('http://localhost:5000/api/analyze', {
-//       method: 'POST',
-//       body: JSON.stringify({ article, modelType }),
-//       headers: { 'Content-Type': 'application/json' },
-//     })
-//       .then(response => response.json())
-//       .then(data => setResult(data))
-//       .catch(err => console.error(err));
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-gray-100 p-6 text-center"> 
-        
-//       <h2 className="text-3xl font-bold text-center mb-4">
-//         Detection
-//       </h2>
-
-//       {/* Article input */}
-//       <div className="flex justify-center">
-//         <input
-//           type="text"
-//           className="p-2 rounded-md border border-gray-300 w-2/3 mb-4"
-//           placeholder="Enter article URL or text"
-//           value={article}
-//           onChange={e => setArticle(e.target.value)}
-//         />
-//       </div>
-
-//       {/* Model type selection */}
-//       <div className="flex justify-center mb-4">
-//         <select
-//           className="p-2 rounded-md border border-gray-300"
-//           value={modelType}
-//           onChange={e => setModelType(e.target.value)}
-//         >
-//           <option value="ML">Machine Learning</option>
-//           <option value="LLM">Large Language Model</option>
-//         </select>
-//       </div>
-
-//       {/* Analyze Button */}
-//       <button
-//         onClick={handleAnalysis}
-//         className="bg-blue-600 text-white px-6 py-3 rounded-md text-lg"
-//       >
-//         Analyze
-//       </button>
-
-//       {/* Display Analysis Results */}
-//       {result && (
-//         <div className="mt-6 bg-white p-6 rounded-md shadow-lg">
-//           {/* Text Results */}
-//           <h3 className="text-xl font-bold mb-4">Analysis Result</h3>
-//           <p>
-//             <strong>Detected Bias:</strong> {result.bias}
-//           </p>
-//           <p>
-//             <strong>Model Used:</strong> {result.model}
-//           </p>
-//           <p>
-//             <strong>Accuracy:</strong> {result.accuracy}%
-//           </p>
-
-//           {/* Visual (Chart) Results */}
-//           <div className="mt-6 p-6 bg-gray-50 rounded-lg shadow-lg">
-//             <h3 className="text-xl text-gray-700 mb-4">Model Performance Comparison</h3>
-//             <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-//               <Line data={chartData} options={{ responsive: true }} />
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ModelAnalysis;
-
-// ==========================================================================================
-
-import React, { useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-} from 'chart.js';
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const ModelAnalysis = () => {
-  const [input, setInput] = useState('');
-  const [feature, setFeature] = useState('text');
+  const [input, setInput] = useState(""); // For text & URL
+  const [file, setFile] = useState(null); // For image upload
+  const [feature, setFeature] = useState("image");
   const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false); // For loading animation
 
-  const chartData = {
-    labels: ['Deep Learning', 'Machine Learning', 'Lexicon-Based'],
-    datasets: [
-      {
-        label: 'Accuracy (%)',
-        data: [90, 80, 70], 
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        tension: 0.1
-      }
-    ]
+  // Helper function to normalize and map labels
+  const getLabelText = (label) => {
+    if (!label) return "Unknown";
+    const normalized = label.toString().toUpperCase();
+    if (normalized === "LABEL_0" || normalized === "REAL") return "REAL";
+    if (normalized === "LABEL_1" || normalized === "FAKE") return "FAKE";
+    return "Unknown";
   };
 
-  const handleAnalysis = () => {
-    const endpoint = {
-      text: 'http://localhost:5000/api/analyze-text',
-      image: 'http://localhost:5000/api/analyze-image',
-      fact: 'http://localhost:5000/api/fact-check'
-    };
+  const getLabelColor = (label) => {
+    if (!label) return "text-gray-600";
+    const normalized = label.toString().toUpperCase();
+    if (normalized === "LABEL_0" || normalized === "REAL") return "text-green-600";
+    if (normalized === "LABEL_1" || normalized === "FAKE") return "text-red-600";
+    return "text-gray-600";
+  };
 
-    fetch(endpoint[feature], {
-      method: 'POST',
-      body: JSON.stringify({ input }),
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(response => response.json())
-      .then(data => setResult(data))
-      .catch(err => console.error(err));
+  const handleAnalysis = async () => {
+    const formData = new FormData();
+    let endpoint = "";
+
+    // Set endpoint and append data based on feature
+    if (feature === "image" && file) {
+      endpoint = "http://localhost:5000/api/analyze-image";
+      formData.append("image", file);
+    } else if (feature === "text" && input.trim() !== "") {
+      endpoint = "http://localhost:5000/api/analyze-text";
+      formData.append("input", input); // <-- backend expects "input"
+    } else {
+      alert("Please provide valid input.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (
+        data === null ||
+        typeof data !== "object" ||
+        data.result === undefined ||
+        data.confidence === undefined
+      ) {
+        alert("Invalid response from server");
+        setResult(null);
+      } else {
+        setResult(data);
+      }
+    } catch (err) {
+      console.error("Error analyzing input:", err);
+      alert("An error occurred during analysis.");
+    }
+
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 text-center">
-      <h2 className="text-3xl font-bold text-center mb-4">
-        Detection
-      </h2>
-
-      <div className="flex justify-center">
-        <input
-          type="text"
-          className="p-2 rounded-md border border-gray-300 w-2/3 mb-4"
-          placeholder={feature === 'image' ? "Enter image URL" : "Enter text or URL"}
-          value={input}
-          onChange={e => setInput(e.target.value)}
-        />
-      </div>
-
-      <div className="flex justify-center mb-4">
-        <select
-          className="p-2 rounded-md border border-gray-300"
-          value={feature}
-          onChange={e => setFeature(e.target.value)}
-        >
-          <option value="text">Media Bias Detection in Text</option>
-          <option value="image">Media Bias Detection in Image</option>
-          <option value="fact">Text Fact Checker</option>
-        </select>
-      </div>
-
-      <button
-        onClick={handleAnalysis}
-        className="bg-blue-600 text-white px-6 py-3 rounded-md text-lg"
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
+      {/* Heading */}
+      <motion.h2
+        className="text-4xl font-bold text-blue-700 mb-6"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
       >
-        Analyze
-      </button>
+        Media Bias Detection
+      </motion.h2>
 
+      {/* Feature Selection */}
+      <motion.div
+        className="mb-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        <select
+          className="p-3 rounded-lg border border-gray-300 shadow-md"
+          value={feature}
+          onChange={(e) => setFeature(e.target.value)}
+        >
+          <option value="text">Detect Bias in Text</option>
+          <option value="image">Detect Bias in Image</option>
+        </select>
+      </motion.div>
+
+      {/* Input Fields */}
+      <motion.div
+        className="w-full flex justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        {feature === "image" ? (
+          <label className="cursor-pointer w-2/3 bg-white text-center py-3 border border-gray-300 rounded-lg shadow-md hover:shadow-lg transition">
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+            {file ? file.name : "Upload an Image"}
+          </label>
+        ) : (
+          <input
+            type="text"
+            className="p-3 rounded-lg border border-gray-300 w-2/3 shadow-md"
+            placeholder="Enter text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+        )}
+      </motion.div>
+
+      {/* Analyze Button */}
+      <motion.button
+        onClick={handleAnalysis}
+        className="bg-blue-600 text-white px-6 py-3 mt-5 rounded-lg text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105 active:scale-95"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+      >
+        {loading ? "Analyzing..." : "Analyze"}
+      </motion.button>
+
+      {/* Display Analysis Result */}
       {result && (
-        <div className="mt-6 bg-white p-6 rounded-md shadow-lg">
-          <h3 className="text-xl font-bold mb-4">Analysis Result</h3>
-          <p><strong>Result:</strong> {result.message}</p>
-          {result.bias && <p><strong>Detected Bias:</strong> {result.bias}</p>}
-          {result.accuracy && <p><strong>Accuracy:</strong> {result.accuracy}%</p>}
-
-          <div className="mt-6 p-6 bg-gray-50 rounded-lg shadow-lg">
-            <h3 className="text-xl text-gray-700 mb-4">Model Performance Comparison</h3>
-            <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-              <Line data={chartData} options={{ responsive: true }} />
-            </div>
-          </div>
-        </div>
+        <motion.div
+          className="mt-6 bg-white p-6 rounded-xl shadow-lg text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h3 className="text-xl font-bold text-gray-800 mb-4">
+            Analysis Result
+          </h3>
+          <motion.p
+            className="text-lg font-medium text-gray-600"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <strong>Result:</strong>{" "}
+            <span className={getLabelColor(result.result)}>
+              {getLabelText(result.result)}
+            </span>
+          </motion.p>
+          <motion.p
+            className="text-lg text-gray-600 mt-2"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            <strong>Confidence:</strong>{" "}
+            {typeof result.confidence === "number"
+              ? result.confidence.toFixed(2)
+              : "N/A"}
+          </motion.p>
+        </motion.div>
       )}
     </div>
   );
 };
 
 export default ModelAnalysis;
-
