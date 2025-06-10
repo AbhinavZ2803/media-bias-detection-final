@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-blue-600 text-white p-6 mt-12">
       <div className="container mx-auto text-center">
-        <p>&copy; 2024 Media Bias Detection | All rights reserved</p>
+        <p>&copy; 2025 Media Bias Detection | All rights reserved</p>
         <p className="mt-2">Follow us on social media:</p>
         <div className="mt-2">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="mx-4 text-xl hover:text-blue-400">Facebook</a>

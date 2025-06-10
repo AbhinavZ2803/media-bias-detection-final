@@ -221,6 +221,71 @@
 // };
 
 // export default Homepage;
+// import React, { useState, useEffect } from 'react';
+
+// const Homepage = () => {
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       setLoading(false);
+//     }, 1500); // Simulate loading time (2.0 seconds)
+
+//     return () => clearTimeout(timer); // Cleanup timer on component unmount
+//   }, []);
+
+//   return (
+//     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-center p-6 relative">
+//       {/* GIF loading animation */}
+//       {loading && (
+//         <div
+//           className={`absolute inset-0 flex justify-center items-center z-10 transition-opacity duration-1500 ease-out ${loading ? 'opacity-100' : 'opacity-0'}`}
+//         >
+//           <img
+//             src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjVucnl0M2RiZ202NDRwN2N1N2tjYWl3N3N2eXoyajF1d29mc3l0cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eEjf3t9MeTXZM0d91u/giphy.gif"
+//             alt="AI loading animation"
+//             className="w-[100%] h-[840px] object-cover opacity-80 transition-opacity duration-2000 ease-in-out"
+//           />
+//         </div>
+//       )}
+
+//       {/* Main content with fade-in animation */}
+//       <div className={`${loading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000 ease-in`}>
+//         <div className="text-center space-y-6">
+//           <h1 className="text-5xl font-extrabold tracking-tight mb-6 animate__animated animate__fadeIn animate__delay-1s">
+//             Media Bias Detection using Machine Learning & Large Language Models
+//           </h1>
+//           <p className="text-lg mb-6 animate__animated animate__fadeIn animate__delay-2s">
+//             Our cutting-edge project leverages Machine Learning and Large Language Models (LLMs) to detect bias in media content, offering deep insights into the portrayal of news.
+//           </p>
+
+//           <div className="space-y-4">
+//             <p className="text-xl font-semibold animate__animated animate__fadeIn animate__delay-3s">
+//               With our tool, you can:
+//             </p>
+//             <ul className="list-disc list-inside text-lg space-y-2 animate__animated animate__fadeIn animate__delay-4s">
+//               <li>Identify political bias, emotional tone, and framing of news articles.</li>
+//               <li>Analyze news articles using advanced algorithms and models.</li>
+//               <li>Access real-time insights with easy-to-understand results.</li>
+//             </ul>
+//           </div>
+
+//           <div className="mt-8 animate__animated animate__fadeIn animate__delay-5s">
+//             <a
+//               href="/model-analysis"
+//               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xl px-8 py-4 rounded-lg shadow-lg transform transition duration-300 hover:scale-105"
+//             >
+//               Start Analysis
+//             </a>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+// 
+// export default Homepage;
+
 import React, { useState, useEffect } from 'react';
 
 const Homepage = () => {
@@ -239,12 +304,12 @@ const Homepage = () => {
       {/* GIF loading animation */}
       {loading && (
         <div
-          className={`absolute inset-0 flex justify-center items-center z-10 transition-opacity duration-1500 ease-out ${loading ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute  top-12 inset-0 flex justify-center items-center z-10 transition-opacity duration-1500 ease-out ${loading ? 'opacity-100' : 'opacity-0'}`}
         >
           <img
             src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdjVucnl0M2RiZ202NDRwN2N1N2tjYWl3N3N2eXoyajF1d29mc3l0cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eEjf3t9MeTXZM0d91u/giphy.gif"
             alt="AI loading animation"
-            className="w-[100%] h-[830px] object-cover opacity-80 transition-opacity duration-2000 ease-in-out"
+            className="w-[100%] h-[840px] object-cover opacity-80 transition-opacity duration-2000 ease-in-out"
           />
         </div>
       )}
@@ -259,7 +324,7 @@ const Homepage = () => {
             Our cutting-edge project leverages Machine Learning and Large Language Models (LLMs) to detect bias in media content, offering deep insights into the portrayal of news.
           </p>
 
-          <div className="space-y-4">
+          <div className="space-y-4 pb-6">
             <p className="text-xl font-semibold animate__animated animate__fadeIn animate__delay-3s">
               With our tool, you can:
             </p>
@@ -283,5 +348,4 @@ const Homepage = () => {
     </div>
   );
 };
-
 export default Homepage;
