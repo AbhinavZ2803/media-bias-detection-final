@@ -8,20 +8,20 @@ const ModelAnalysis = () => {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false); // For loading animation
 
-  // Helper function to normalize and map labels
+  // Simplified for Gemini response
   const getLabelText = (label) => {
     if (!label) return "Unknown";
     const normalized = label.toString().toUpperCase();
-    if (normalized === "LABEL_0" || normalized === "REAL") return "REAL";
-    if (normalized === "LABEL_1" || normalized === "FAKE") return "FAKE";
+    if (normalized === "REAL") return "REAL";
+    if (normalized === "FAKE") return "FAKE";
     return "Unknown";
   };
 
   const getLabelColor = (label) => {
     if (!label) return "text-gray-600";
     const normalized = label.toString().toUpperCase();
-    if (normalized === "LABEL_0" || normalized === "REAL") return "text-green-600";
-    if (normalized === "LABEL_1" || normalized === "FAKE") return "text-red-600";
+    if (normalized === "REAL") return "text-green-600";
+    if (normalized === "FAKE") return "text-red-600";
     return "text-gray-600";
   };
 
@@ -29,13 +29,12 @@ const ModelAnalysis = () => {
     const formData = new FormData();
     let endpoint = "";
 
-    // Set endpoint and append data based on feature
     if (feature === "image" && file) {
       endpoint = "http://localhost:5000/api/analyze-image";
       formData.append("image", file);
     } else if (feature === "text" && input.trim() !== "") {
       endpoint = "http://localhost:5000/api/analyze-text";
-      formData.append("input", input); // <-- backend expects "input"
+      formData.append("input", input); // Gemini-backed endpoint
     } else {
       alert("Please provide valid input.");
       return;
@@ -51,16 +50,18 @@ const ModelAnalysis = () => {
 
       const data = await response.json();
 
-      if (
-        data === null ||
-        typeof data !== "object" ||
-        data.result === undefined ||
-        data.confidence === undefined
-      ) {
-        alert("Invalid response from server");
+      if (data.error) {
+        alert(`Server error: ${data.error}`);
         setResult(null);
-      } else {
+      } else if (
+        typeof data === "object" &&
+        "result" in data &&
+        "confidence" in data
+      ) {
         setResult(data);
+      } else {
+        alert("Invalid response format from server.");
+        setResult(null);
       }
     } catch (err) {
       console.error("Error analyzing input:", err);
@@ -78,9 +79,7 @@ const ModelAnalysis = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-      >
-        Media Bias Detection
-      </motion.h2>
+      ></motion.h2>
 
       {/* Feature Selection */}
       <motion.div
